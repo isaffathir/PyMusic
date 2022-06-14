@@ -1,0 +1,53 @@
+<Play>
+    MDFloatLayout:
+        md_bg_color: 1, 1, 1, 1
+    MDLabel:
+        text: "Playing Music Screen"
+        halign: "center"
+        pos_hint: {'center_x': 0.5,'center_y': 0.5}
+
+    MDLabel:
+        id: labelpos
+        text: root.detikmenit(slider.value)
+        halign: "center"
+        pos_hint: {'center_x': 0.1,'center_y': 0.2}
+
+    MDLabel:
+        id: labelmusik
+        text: root.lagu
+        halign: "center"
+        pos_hint: {'center_x': 0.5,'center_y': 0.45}
+
+    MDLabel:
+        id: labelmax
+        text: root.detikmenit(slider.max)
+        halign: "center"
+        pos_hint: {'center_x': 0.9,'center_y': 0.2}
+
+    BoxLayout:
+        adaptive_height: True
+        pos_hint: {'center_x': 0.5,'center_y': 0.17}
+        MDSlider:
+            id: slider
+            min: 0
+            max: root.maxdurasi
+            value: root.durasi
+            do_scroll_y: False
+            height: dp(20)
+            size_hint_y: None
+            pos_hint: {'center_x': 0.5,'center_y': 0.5}
+            hint: False
+            show_off: False
+            on_touch_up: root.ontouchup(self.value)
+            on_touch_down: root.ontouchdown(self.value)
+
+    MDBottomAppBar:
+        MDTopAppBar:
+            id: play_controller
+            icon: "play"
+            type: "bottom"
+            on_action_button: root.playmusic(play_controller)
+            left_action_items: [["menu", lambda x: root.callback(x)]]
+            right_action_items: [["stop", lambda x: root.stopmusic(x)]]
+        
+    
