@@ -2,7 +2,6 @@
 
 Cross Platform Music Player made by Python
 
-Test the App here :
+# Test the App here :
 
-#ANDROID
-Link apk : https://bit.ly/3tr8BQI
+- ANDROID : https://bit.ly/3tr8BQI
