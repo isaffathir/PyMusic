@@ -1,14 +1,14 @@
 import datetime
 from kivymd.uix.screen import MDScreen
 from kivy.lang import Builder
-#from kivy.core.audio import Sound,SoundLoader
+from kivy.core.audio import Sound,SoundLoader
 from kivy.properties import NumericProperty,StringProperty
 from kivy.clock import Clock
 from kivymd.uix.behaviors import TouchBehavior
 from kivymd.uix.slider import MDSlider
 from kivy.metrics import dp
 from kivymd.uix.menu import MDDropdownMenu
-from nativesound import SoundLoader
+#from nativesound import SoundLoader
 
 class Play(MDScreen):
     durasi = NumericProperty(0)
@@ -40,20 +40,27 @@ class Play(MDScreen):
         #from nativesound import SoundLoader
         musik = self.sound
         text = text_item
-        self.lagu = text
-        new = SoundLoader.load(text)
-        self.menu.dismiss()
-        if self.sound.state == 'play':
-            self.sound.stop()
-            self.sound.unload()
-            self.sound = new
-            self.maxdurasilagu()
-            self.sound.play()
+        lagu = text_item
+        
+        if lagu != self.lagu:
+            print("beda")
+            self.lagu = text
+            new = SoundLoader.load(text)
+            self.menu.dismiss()
+            if self.sound.state == 'play':
+                self.sound.stop()
+                self.sound.unload()
+                self.sound = new
+                self.maxdurasilagu()
+                self.sound.play()
+            else:
+                self.sound.unload()
+                self.sound = new
+                self.maxdurasilagu()
+                print("stop")
         else:
-            self.sound.unload()
-            self.sound = new
-            self.maxdurasilagu()
-            print("stop")
+            print("sama")
+            self.menu.dismiss()
 
     def callback(self, button):
         musik = self.sound
