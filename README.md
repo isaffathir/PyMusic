@@ -1,6 +1,6 @@
 # PyMusic
 
-Cross Platform Music Player made by Python
+Cross Platform Music Player made by Python + Kivy
 
 # Test the App here :
 
